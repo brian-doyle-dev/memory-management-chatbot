@@ -30,8 +30,8 @@ public:
     //// STUDENT CODE
     ////
 
-    ChatBot &operator=(const ChatBot& source);
-    ChatBot(const ChatBot& source);
+    ChatBot &operator=(const ChatBot& source) = delete;
+    ChatBot(const ChatBot& source) = delete;
     ChatBot &operator=(ChatBot&& source);
     ChatBot(ChatBot&& source);
 
