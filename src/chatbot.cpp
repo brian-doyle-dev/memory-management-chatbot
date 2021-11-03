@@ -44,6 +44,52 @@ ChatBot::~ChatBot()
 
 //// STUDENT CODE
 ////
+ChatBot &ChatBot::operator=(ChatBot&& source)
+{
+    std::cout << "ChatBot Move Assignment Constructor\n";
+
+    if (this == &source)
+        return *this;
+
+    // data handles (owned)
+    _image = source._image;
+    source._image = NULL;
+
+    // data handles (not owned)
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+
+    // Update _chatLogic ChatBot handle when we move
+    _chatLogic->SetChatbotHandle(this);
+
+    source._currentNode = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+
+    return *this;
+}
+
+ChatBot::ChatBot(ChatBot&& source)
+{
+    std::cout << "ChatBot Move Constructor\n";
+
+    // data handles (owned)
+    _image = source._image;
+    source._image = NULL;
+
+    // data handles (not owned)
+    _currentNode = source._currentNode;
+    _chatLogic = source._chatLogic;
+    _rootNode = source._rootNode;
+
+    // Update _chatLogic ChatBot handle when we move
+    _chatLogic->SetChatbotHandle(this);
+
+    source._currentNode = nullptr;
+    source._chatLogic = nullptr;
+    source._rootNode = nullptr;
+}
 
 ////
 //// EOF STUDENT CODE
